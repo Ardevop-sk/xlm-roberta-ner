@@ -106,7 +106,10 @@ def add_xlmr_args(parser):
      parser.add_argument('--freeze_model', 
                          action='store_true', default=False,
                          help = "whether to freeze the XLM-R base model and train only the classification heads")
-                                   
+
+#     parser.add_argument("--labels_filter", type=str default=None,
+#                         help = "[Optional] Labels to train")
+
      return parser
 
 
