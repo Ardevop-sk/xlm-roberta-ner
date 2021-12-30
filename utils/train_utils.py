@@ -99,11 +99,11 @@ def add_xlmr_args(parser):
                          help="Loss scaling to improve fp16 numeric stability. Only used when fp16 set to True.\n"
                               "0 (default value): dynamic loss scaling.\n"
                               "Positive power of 2: static loss scaling value.\n")
-     parser.add_argument('--dropout', 
+     parser.add_argument('--dropout',
                          type=float, default=0.3,
                          help = "training dropout probability")
-     
-     parser.add_argument('--freeze_model', 
+
+     parser.add_argument('--freeze_model',
                          action='store_true', default=False,
                          help = "whether to freeze the XLM-R base model and train only the classification heads")
 
@@ -118,7 +118,7 @@ def evaluate_model(model, eval_dataset, label_list, batch_size, device):
      Evaluates an NER model on the eval_dataset provided.
      Returns:
           F1_score: Macro-average f1_score on the evaluation dataset.
-          Report: detailed classification report 
+          Report: detailed classification report
      """
 
      # Run prediction for full data
@@ -163,6 +163,6 @@ def evaluate_model(model, eval_dataset, label_list, batch_size, device):
                y_pred.append(temp_2)
 
      report = classification_report(y_true, y_pred, digits=4)
-     f1 = f1_score(y_true, y_pred, average='Macro')
+     f1 = f1_score(y_true, y_pred, average='macro')
 
      return f1, report
