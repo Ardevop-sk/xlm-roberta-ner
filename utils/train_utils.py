@@ -155,8 +155,17 @@ def evaluate_model(model, eval_dataset, label_list, batch_size, device):
 
                for j, m in enumerate(cur_label):
                     if valid_ids[i][j]:  # if it's a valid label
-                         temp_1.append(label_map[m])
-                         temp_2.append(label_map[logits[i][j]])
+                         true_label = label_map[m]
+                         if true_label == "O":
+                             temp_1.append(true_label)
+                         else:
+                             temp_1.append("I-"+true_label)
+
+                         pred_label = label_map[logits[i][j]]
+                         if pred_label == "O":
+                             temp_2.append(pred_label)
+                         else:
+                             temp_2.append("I-"+pred_label)
 
                assert len(temp_1) == len(temp_2)
                y_true.append(temp_1)
